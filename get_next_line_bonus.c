@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: laufarin <laufarin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 19:59:12 by laufarin          #+#    #+#             */
-/*   Updated: 2023/12/02 17:53:17 by laufarin         ###   ########.fr       */
+/*   Created: 2023/12/04 16:41:01 by laufarin          #+#    #+#             */
+/*   Updated: 2023/12/09 20:09:32 by laufarin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,27 +103,25 @@ char	*fill_storage(int fd, char *storage)
 	return (storage);
 }
 
-//(700) Storage Original = > 1001
-
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*storage = NULL;
+	static char		*storage[OPEN_MAX];
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (!storage || (storage && !ft_strchr(storage, '\n')))
-		storage = fill_storage(fd, storage);
-	if (!storage)
+	if (!storage[fd] || (storage[fd] && !ft_strchr(storage[fd], '\n')))
+		storage[fd] = fill_storage(fd, storage[fd]);
+	if (!storage[fd])
 		return (NULL);
-	line = extract_line(storage);
+	line = extract_line(storage[fd]);
 	if (!line)
 	{
-		free(storage);
-		storage = NULL;
+		free(storage[fd]);
+		storage[fd] = NULL;
 		return (NULL);
 	}
-	storage = update_storage(storage);
+	storage[fd] = update_storage(storage[fd]);
 	return (line);
 }
 /*
@@ -138,7 +136,8 @@ int	main()
    ret = get_next_line(fd);
 
    printf("line = %s\n", ret);
- 
+
     close(fd);
     return (0);
-}*/
+}
+*/[fd][fd]
