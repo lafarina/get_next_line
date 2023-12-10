@@ -6,7 +6,7 @@
 /*   By: laufarin <laufarin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 16:41:01 by laufarin          #+#    #+#             */
-/*   Updated: 2023/12/09 20:09:32 by laufarin         ###   ########.fr       */
+/*   Updated: 2023/12/10 17:45:59 by laufarin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ char	*fill_storage(int fd, char *storage)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char		*storage[OPEN_MAX];
+	static char	*storage[OPEN_MAX];
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
@@ -140,4 +140,4 @@ int	main()
     close(fd);
     return (0);
 }
-*/[fd][fd]
+*/
